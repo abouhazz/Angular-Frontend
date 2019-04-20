@@ -1,0 +1,21 @@
+<mat-card>
+        <mat-spinner *ngIf="isLoading"></mat-spinner>
+        
+        <form [formGroup]="GameForm" *ngIf="!isLoading">
+          <mat-form-field>
+            <input matInput type="text" formControlName="name" placeholder="{{game.name}}"/>
+          </mat-form-field>
+      
+          <mat-form-field>
+            <textarea matInput rows="6" formControlName="description" placeholder="{{game.description}}"></textarea>
+          </mat-form-field>
+          <mat-form-field>
+              <textarea matInput rows="6" formControlName="platform" placeholder="{{game.platform}}"></textarea>
+            </mat-form-field>
+      
+          <button mat-raised-button color="primary" (click)="updateGame(gameid)" [disabled]="!GameForm.valid">
+            Save Game
+          </button>
+          
+        </form>
+      </mat-card>

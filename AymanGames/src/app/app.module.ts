@@ -4,6 +4,9 @@ import { AuthInterceptorService } from './auth/auth-interceptor';
 import { LoginComponent } from './auth/login/login.component';
 import {SignupComponent}from './auth/register/register.component';
 import {GamesListComponent}from './games/games-list/games-list.component'
+import {CreateGameComponent}from'./games/game-create/games.create.component'
+import {GamesDetailComponent} from './games/game-detail/games-detail.component'
+import{ UpdateGameComponent} from './games/game-update/games-update.component'
 import {HeaderComponent} from './header/header.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -26,11 +29,7 @@ import {
 } from '@angular/material';
 import { from } from 'rxjs';
 
-const appRoutes: Routes = [
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: SignupComponent },
-  
-]
+
 
 
 
@@ -40,7 +39,10 @@ const appRoutes: Routes = [
     LoginComponent,
     HeaderComponent,
     SignupComponent,
-    GamesListComponent
+    GamesListComponent,
+    CreateGameComponent,
+    GamesDetailComponent,
+    UpdateGameComponent
     
 
   ],
@@ -61,7 +63,7 @@ const appRoutes: Routes = [
     MatPaginatorModule,
     MatDialogModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]

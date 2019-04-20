@@ -13,7 +13,8 @@ import { environment } from '../../environments/environment';
   export class GameService{
     apiUrl = environment.apiUrl;
     private games: Game[]=[];
-    
+    private game: Game;
+    private gameUpdated = new Subject<{ game: Game }>();
     private gamesUpdated = new Subject<{games : Game[]}>();
 
 
@@ -22,6 +23,7 @@ import { environment } from '../../environments/environment';
     getGameUpdateListener(){
         return this.gamesUpdated.asObservable();
     }
+
     getGames(){
         this.http.get<any>(`${this.apiUrl}api/games`)
         .subscribe((response) => {
@@ -30,5 +32,39 @@ import { environment } from '../../environments/environment';
          });
 
     }
+
+    createGame(game: Game){
+        this.http.post<any>(`${this.apiUrl}api/games`, game)
+      .subscribe((response) => {
+          this.router.navigate(['gamelist'])
+      });
+    }
+
+    getGameById(gameId: String){
+        this.http.get<any>(`${this.apiUrl}api/games/` + gameId)
+            .subscribe((response) => {
+            this.game = response;
+        this.gameUpdated.next({ game: { ...this.game } })
+      });
+    }
+
+    updateGame(gameId: string, game: Game) {
+        this.http.put<any>(`${this.apiUrl}api/games/` + gameId, game)
+          .subscribe((response) => {
+            this.router.navigate(['gamelist']);
+          });
+      }
+
+      deleteGame(gameId: String){
+        this.http.delete<any>(`${this.apiUrl}api/games/` + gameId)
+        .subscribe((response) => {
+          this.router.navigate(['gamelist']);
+        });
+      }
+
+    getGameByIdUpdateListener() {
+        return this.gameUpdated.asObservable();
+      }
+
 
   }

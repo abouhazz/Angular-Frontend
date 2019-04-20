@@ -13,6 +13,7 @@ export class AuthService {
   private apiUrl = environment.apiUrl;
   private isAuthenticated = false;
   private authStatusListener = new Subject<boolean>();
+  private token: string;
   
   
   
@@ -22,6 +23,10 @@ export class AuthService {
 
   getIsAuth() {
     return this.isAuthenticated;
+  }
+
+  getToken(){
+    
   }
 
   getAuthStatusListener(){
