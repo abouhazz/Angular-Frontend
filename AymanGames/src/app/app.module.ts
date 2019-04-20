@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { AuthInterceptorService } from './auth/auth-interceptor';
 import { LoginComponent } from './auth/login/login.component';
 import {SignupComponent}from './auth/register/register.component';
+import {GamesListComponent}from './games/games-list/games-list.component'
 import {HeaderComponent} from './header/header.component';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -27,6 +29,7 @@ import { from } from 'rxjs';
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: SignupComponent },
+  
 ]
 
 
@@ -36,7 +39,9 @@ const appRoutes: Routes = [
     AppComponent,
     LoginComponent,
     HeaderComponent,
-    SignupComponent
+    SignupComponent,
+    GamesListComponent
+    
 
   ],
   imports: [
@@ -58,7 +63,7 @@ const appRoutes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
