@@ -8,18 +8,13 @@ import { Subscription } from 'rxjs';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements  OnDestroy {
   isLoading = false;
   private authStatusSub: Subscription;
 
   constructor(private authService: AuthService) { }
 
-  ngOnInit() {
-    this.authStatusSub = this.authService.getAuthStatusListener()
-      .subscribe(authStatus => {
-        this.isLoading = authStatus;
-      });
-  }
+  
 
   onLogin(form: NgForm) {
     if (form.invalid) {
@@ -32,7 +27,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.authStatusSub.unsubscribe();
+    
   }
 
 }

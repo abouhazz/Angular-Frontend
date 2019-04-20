@@ -11,47 +11,45 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   private apiUrl = environment.apiUrl;
-  private token: string;
   private isAuthenticated = false;
-  private tokenTimer: any;
   private authStatusListener = new Subject<boolean>();
-  private isUserLoggedIn;
+  
+  
+  
 
   constructor(private http: HttpClient, private router: Router) { }
 
-  
-  getAuthStatusListener() {
-    return this.authStatusListener;
-  }
 
   getIsAuth() {
     return this.isAuthenticated;
   }
 
+  getAuthStatusListener(){
+    return this.authStatusListener;
+  }
+
   createUser(email: string, name: string, password: string) {
     const authData: AuthData = { email: email, name: name, password: password};
 
-    return this.http.post(`${this.apiUrl}api/users/register`, authData)
+    this.http.post(`${this.apiUrl}api/register`, authData)
       .subscribe(() => {
-        this.router.navigate(['login']);
-      }, error => {
-        this.authStatusListener.next(false);
+        this.router.navigate(['/']);
       });
   }
 
   loginUser(email: string,  password: string) {
     const authData: AuthData = { email: email, name:undefined, password: password};
-    this.http.post<{ message: string, token: string, expiresIn: number, user: any }>(
-      `${this.apiUrl}api/users/login`, authData
-      )
+    this.http.post<any>(
+      `${this.apiUrl}api/login`, authData
+      )    
       .subscribe((response) => {
         localStorage.setItem('token', response.toString())
-        this.token = response.token;
-        if (this.token) {
-          this.router.navigate(['/']);
-        }
-      }, error => {
-        this.authStatusListener.next(false);
+        this.isAuthenticated = true;
+        this.authStatusListener.next(true);
+        this.router.navigate(['/']);
+        
+        
+        
       }
       );
   }
@@ -59,13 +57,10 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
-    this.token = null;
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
-    clearTimeout(this.tokenTimer);
+    this.router.navigate(['login']);
     
-    
-    this.router.navigate(['/']);
   }
 
 }

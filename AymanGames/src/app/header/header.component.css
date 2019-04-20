@@ -1,0 +1,34 @@
+#profileButton {
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 15px;
+    height: 35px;
+}
+
+#navbar {
+    width: 100%;
+    height: 55px;
+    
+}
+
+.navbutton {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#loginbutton {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#logoutbutton{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#spacer {
+    flex: 1 1 auto;
+}
