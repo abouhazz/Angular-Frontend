@@ -3,7 +3,7 @@
         
         <form [formGroup]="GameForm" *ngIf="!isLoading">
           <mat-form-field>
-            <input matInput type="text" formControlName="name" placeholder="{{game.name}}"/>
+            <input matInput type="text" formControlName="name" placeholder="Game Name"/>
           </mat-form-field>
       
           <mat-form-field>
@@ -13,7 +13,7 @@
               <textarea matInput rows="6" formControlName="platform" placeholder="{{game.platform}}"></textarea>
             </mat-form-field>
       
-          <button mat-raised-button color="primary" (click)="updateGame(gameid)" [disabled]="!GameForm.valid">
+          <button mat-raised-button color="primary" (click)="updateGame(game._id)" [disabled]="!GameForm.valid">
             Save Game
           </button>
           
