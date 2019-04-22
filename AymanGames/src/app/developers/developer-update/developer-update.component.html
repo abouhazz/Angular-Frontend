@@ -1,6 +1,4 @@
 <mat-card>
-        <mat-spinner *ngIf="isLoading"></mat-spinner>
-        
         <form [formGroup]="updateDeveloperForm" *ngIf="!isLoading">
           <mat-form-field>
             <input matInput type="text" formControlName="name" placeholder={{developer?.name}}/>

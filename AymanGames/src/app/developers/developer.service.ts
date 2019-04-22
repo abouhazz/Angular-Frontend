@@ -33,9 +33,9 @@ import { environment } from '../../environments/environment';
 
     }
 
-    createDeveloper(gameid : String, developer: any){
+    createDeveloper(gameid : String, developer: Developer){
         this.http.post<any>(`${this.apiUrl}api/games/`+ gameid+ '/developers', developer)
-      .subscribe((response) => {
+        .subscribe((response) => {
           this.router.navigate(['gamedetail/'+ gameid])
       });
     }
@@ -44,11 +44,11 @@ import { environment } from '../../environments/environment';
         this.http.get<any>(`${this.apiUrl}api/games/` + gameid + '/developers/'+developerid)
             .subscribe((response) => {
             this.developer = response;
-        this.developerUpdated.next({ developer: { ...this.developer } })
+            this.developerUpdated.next({ developer: { ...this.developer } })
       });
     }
 
-    updateDeveloper(gameid: String, developerid: String, developer: Developer) {
+    updateDeveloper(gameid: String, developerid: String, developer: String) {
         this.http.put<any>(`${this.apiUrl}api/games/` + gameid + '/developers/'+developerid, developer)
           .subscribe((response) => {
             this.router.navigate(['gamedetail/'+ gameid]);

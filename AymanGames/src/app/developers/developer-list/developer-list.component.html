@@ -2,11 +2,8 @@
 <tr *ngFor="let developer of developers">
     <th scope="row">{{developer.name}}</th>
     <span id="spacer"></span>
-    <td>
-        <span id="spacer"></span>
-        <a mat-raised-button color="warn" (click)="deleteDeveloper(game._id, developer._id)" id="button">Delete developer</a>
-        <span id="spacer"></span>
-        <a mat-raised-button color="primary" [routerLink]="['/gamedetail', game._id, 'developerupdate', developer._id]" id="button">Update developer</a>
-    </td>
+    <a mat-raised-button color="warn" (click)="deleteDeveloper(game._id, developer._id)" id="button">Delete developer</a>
+    <span id="spacer"></span>
+    <a mat-raised-button color="primary" [routerLink]="['/gamedetail', game._id, 'developerupdate', developer._id]" id="button">Update developer</a>  
 </tr>
 </tbody>

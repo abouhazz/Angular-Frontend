@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { DeveloperService } from '../developer.service';
-import { Game } from 'src/app/models/game.model';
 import { Developer } from 'src/app/models/developer.model';
 import { Subscription } from 'rxjs';
+import { DeveloperService } from '../developer.service';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-developer-list',
@@ -11,24 +11,37 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./developer-list.component.css']
 })
 export class DevelopersListComponent implements OnInit {
-  @Input() game: any;
-  gameId: string;
+  userIsAuth = false;
+  Id: string;
   developers: Developer[] = [];
-  developerSub: Subscription;
+  subscription: Subscription;
+  @Input()game: any;
 
-  constructor(private developerService: DeveloperService, private route: ActivatedRoute) { 
-    this.route.params.subscribe((params) => this.gameId = params.gameid);
+  constructor(private developerService: DeveloperService, private route: ActivatedRoute, private authService: AuthService) { 
+    
   }
 
   ngOnInit() {
-    this.developerService.getDevelopers(this.gameId);
-    this.developerSub = this.developerService.getDeveloperUpdateListener()
+    this.route.params.subscribe((params) => this.Id = params.gameid);
+    
+    this.developerService.getDevelopers(this.Id);
+    this.subscription = this.developerService.getDeveloperUpdateListener()
       .subscribe((developerData: { developers: Developer[] }) => {
         this.developers = developerData.developers;
       });
+      
+      this.userIsAuth = this.authService.getIsAuth();
+      this.subscription = this.authService.getAuthStatusListener()
+        .subscribe(isAuth => {
+          this.userIsAuth = isAuth;
+          
+        })
+
+      
   }
 
   deleteDeveloper(gameId: string, developerId: string) {
-    this.developerService.deleteDeveloper(gameId, developerId);
+    this.developerService.deleteDeveloper(gameId, developerId)
+    this.developerService.getDevelopers(gameId);
   }
 }

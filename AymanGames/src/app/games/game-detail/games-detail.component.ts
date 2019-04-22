@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { ParamMap, ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 import { Game } from 'src/app/models/game.model';
 
 @Component({
@@ -13,8 +14,9 @@ export class GamesDetailComponent implements OnInit {
   game: Game;
   gameSub: Subscription;
   gameId: string;
+  userIsAuth = false;
 
-  constructor(private gameService: GameService, private route: ActivatedRoute) { }
+  constructor(private gameService: GameService, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
     this.route.params.subscribe((params) => this.gameId = params.gameid);
@@ -23,9 +25,17 @@ export class GamesDetailComponent implements OnInit {
     .subscribe((gameData: { game: Game }) => {
         this.game = gameData.game;
       });
+
+    this.userIsAuth = this.authService.getIsAuth();
+    this.gameSub = this.authService.getAuthStatusListener()
+      .subscribe(isAuth => {
+        this.userIsAuth = isAuth;
+        
+      })
   }
 
   onDelete(gameId: String){
     this.gameService.deleteGame(gameId);
+    this.gameService.getGameById(gameId);
   }
 }
