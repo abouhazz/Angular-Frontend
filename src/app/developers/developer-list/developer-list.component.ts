@@ -40,8 +40,8 @@ export class DevelopersListComponent implements OnInit {
       
   }
 
-  deleteDeveloper(gameId: string, developerId: string) {
-    this.developerService.deleteDeveloper(gameId, developerId)
-    this.developerService.getDevelopers(gameId);
+  deleteDeveloper(Id: string, developerId: string) {
+    this.developerService.deleteDeveloper(Id, developerId)
+    this.developerService.getDevelopers(Id);
   }
 }
