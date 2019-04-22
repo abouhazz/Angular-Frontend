@@ -1,5 +1,5 @@
 <mat-card>
-        <form [formGroup]="updateDeveloperForm" *ngIf="!isLoading">
+        <form [formGroup]="updateDeveloperForm">
           <mat-form-field>
             <input matInput type="text" formControlName="name" placeholder={{developer?.name}}/>
           </mat-form-field>
