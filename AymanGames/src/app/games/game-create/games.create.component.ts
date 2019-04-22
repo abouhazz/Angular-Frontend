@@ -20,8 +20,12 @@ export class CreateGameComponent implements OnInit{
         })
     }
     ngOnInit(){
-        this.gameService.createGame(this.GameForm.value)
+        
     }
+
+    createGame() {
+        this.gameService.createGame(this.GameForm.value)
+      }
 
     
 }

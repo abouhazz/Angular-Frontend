@@ -3,7 +3,7 @@
         
         <form [formGroup]="updateDeveloperForm" *ngIf="!isLoading">
           <mat-form-field>
-            <input matInput type="text" formControlName="name" placeholder="Developer Name"/>
+            <input matInput type="text" formControlName="name" placeholder={{developer?.name}}/>
           </mat-form-field>
           <button mat-raised-button color="primary" (click)="updateDeveloper(gameId, developerId)" [disabled]="!updateDeveloperForm.valid">
             Save Developer

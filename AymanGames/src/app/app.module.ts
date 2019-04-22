@@ -16,6 +16,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {ErrorInterceptor}from './app-error-interceptor'
+import { ErrorComponent } from './error/error.component';
+
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import {
@@ -28,7 +31,8 @@ import {
   MatProgressSpinnerModule,
   MatGridListModule,
   MatPaginatorModule,
-  MatDialogModule
+  MatDialogModule,
+  
 } from '@angular/material';
 import { from } from 'rxjs';
 
@@ -48,7 +52,8 @@ import { from } from 'rxjs';
     UpdateGameComponent,
     DeveloperCreateComponent,
     DevelopersListComponent,
-    DevelopersUpdateComponent
+    DevelopersUpdateComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -69,7 +74,11 @@ import { from } from 'rxjs';
     HttpClientModule,
     
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true }],
-  bootstrap: [AppComponent]
+  entryComponents:[
+    ErrorComponent
+  ],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptorService, multi: true },
+    {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true} ],
+  bootstrap: [AppComponent, HeaderComponent]
 })
 export class AppModule { }

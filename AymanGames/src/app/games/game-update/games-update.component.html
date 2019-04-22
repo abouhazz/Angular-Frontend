@@ -3,19 +3,20 @@
         
         <form [formGroup]="GameForm" *ngIf="!isLoading">
           <mat-form-field>
-            <input matInput type="text" formControlName="name" placeholder="Game Name"/>
+              <input matInput type="text" formControlName="name" placeholder="Game Name"/>
           </mat-form-field>
-      
+          <span id="spacer"></span>
           <mat-form-field>
-            <textarea matInput rows="6" formControlName="description" placeholder="{{game.description}}"></textarea>
+              <textarea matInput rows="6" formControlName="description" placeholder="Game Description"></textarea>
           </mat-form-field>
+          <span id="spacer"></span>
           <mat-form-field>
-              <textarea matInput rows="6" formControlName="platform" placeholder="{{game.platform}}"></textarea>
+              <textarea matInput type="text" formControlName="platform" placeholder="Game platform"></textarea>
             </mat-form-field>
-      
-          <button mat-raised-button color="primary" (click)="updateGame(game._id)" [disabled]="!GameForm.valid">
-            Save Game
-          </button>
+            <span id="spacer"></span>
+          <button mat-raised-button color="primary" (click)="updateGame(gameid)" [disabled]="!GameForm.valid">
+              Save Game
+            </button>
           
         </form>
       </mat-card>

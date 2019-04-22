@@ -49,6 +49,10 @@ export class AuthService {
       )    
       .subscribe((response) => {
         localStorage.setItem('token', response.toString())
+
+
+
+        
         this.isAuthenticated = true;
         this.authStatusListener.next(true);
         this.router.navigate(['gamelist']);

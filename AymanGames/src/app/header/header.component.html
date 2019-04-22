@@ -1,9 +1,9 @@
-<div id="navbar" fxLayout="row" fxLayout.xs="row" fxLayoutWrap fxLayoutGap="0.2" fxLayoutAlign="center">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a *ngIf="userIsAuth" id="profileButton" mat-flat-button routerLink="gamelist">Home</a>
     <span id="spacer"></span>
     <a *ngIf="!userIsAuth" mat-raised-button color="primary" routerLink="login" id="loginbutton"> Inloggen</a>
     <a *ngIf="userIsAuth" (click)="onLogout()" mat-raised-button color="warn" id="logoutbutton"> Uitloggen</a>
     <span id="spacer"></span>
     <a *ngIf="!userIsAuth" mat-raised-button color="primary" routerLink="register" id="registerbutton"> Registreer</a>
-    <a *ngIf="userIsAuth" mat-raised-button color="primary" routerLink="gamecreate" routerLinkActive="mat-accent">New game</a>
-  </div>
+    <a *ngIf="userIsAuth" mat-raised-button color="primary" [routerLink]="['/gamecreate']" routerLinkActive="mat-accent">New game</a>
+</nav>

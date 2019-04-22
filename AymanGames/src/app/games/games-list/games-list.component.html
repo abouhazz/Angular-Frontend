@@ -2,29 +2,22 @@
 
 
 <mat-grid-list 
-  cols="4"
-  rowHeight="1:1"
+  cols="3"
   gutterSize="1rem"
 >
 
   <mat-grid-tile *ngFor="let game of games">
-    <mat-card class="movie-card">
+    <mat-card class="game-card">
       <mat-card-header >
         <mat-card-title><a [routerLink]="['/gamedetail', game._id]">{{ game.name }}</a></mat-card-title>
-        <mat-card-subtitle>{{ game.platform }}</mat-card-subtitle>
+        <mat-card-subtitle>platform: {{ game.platform }}</mat-card-subtitle>
+        <mat-card-subtitle>description: {{ game.description}}</mat-card-subtitle>
       </mat-card-header>
-      <mat-card-content>
-        <p>{{ game.description}}</p>
-      </mat-card-content>
       <mat-card-actions *ngIf="userIsAuth">
-        <a mat-button color="primary"
-        >DETAILS</a
-        >
         <button mat-button color="warn" (click)="onDelete(game._id)">
           DELETE
         </button>
       </mat-card-actions>
-     
     </mat-card>
   </mat-grid-tile>
 </mat-grid-list>
