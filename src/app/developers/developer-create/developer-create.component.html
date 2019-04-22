@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form [formGroup]="DeveloperForm" *ngIf="!isLoading">
+      <mat-form-field>
+        <input matInput type="text" formControlName="name" placeholder="Developer Name"/>
+      </mat-form-field>
+      <button mat-raised-button color="primary" (click)="createDeveloper(gameid)" [disabled]="!DeveloperForm.valid">
+        Save Developer
+      </button>
+    </form>
+  </mat-card>

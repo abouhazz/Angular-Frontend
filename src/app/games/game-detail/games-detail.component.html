@@ -1,0 +1,29 @@
+<mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <div *ngIf="!isLoading">  
+     <mat-card-header> 
+            <mat-card-title>{{game?.name}}</mat-card-title>       
+          </mat-card-header>   
+          <mat-card-content>
+            <h4>Description:</h4>
+            <p class="mat-body-1">{{ game?.description }}</p>
+          </mat-card-content>
+
+          <mat-card-content>
+              <h4>Platforms:</h4>
+              <p class="mat-body-1">{{ game?.platform }}</p>
+          </mat-card-content>
+
+          <mat-card-content>
+              <h4>Developers:</h4>
+              <app-developer-list [game]="game"></app-developer-list>
+          </mat-card-content>
+          <span id="spacer"></span>
+            <a mat-raised-button color="primary" [routerLink]="['/gameedit', game._id]"id="editbutton">EDIT</a>
+            <span id="spacer"></span>
+            <a mat-raised-button color="warn" (click)="onDelete(game._id)" [routerLink]="['/gamelist']"id = "deletebutton">DELETE</a>
+            <span id="spacer"></span>
+            <a mat-raised-button color="primary" [routerLink]="['/gamedetail', game._id, 'developercreate']"id = "adddeveloper">ADD DEVELOPER</a>
+            <span id="spacer"></span>
+        </div>
+      </mat-card>

@@ -1,0 +1,21 @@
+#loginbutton {
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#logoutbutton{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#homebutton{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#spacer {
+    flex: 1 1 auto;
+}

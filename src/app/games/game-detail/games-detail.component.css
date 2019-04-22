@@ -1,0 +1,21 @@
+#spacer {
+    flex: 1 1 auto;
+}
+
+#editbutton{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#deletebutton{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}
+
+#adddeveloper{
+    margin-top: 10px;
+    margin-right: 10px;
+    height: 35px;
+}

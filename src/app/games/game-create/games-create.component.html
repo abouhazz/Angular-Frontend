@@ -1,0 +1,21 @@
+<mat-card>
+    
+    
+    <form [formGroup]="GameForm">
+      <mat-form-field>
+        <input matInput type="text" formControlName="name" placeholder="Game Name"/>
+      </mat-form-field>
+      <span id="spacer"></span>
+      <mat-form-field>
+        <textarea matInput rows="6" formControlName="description" placeholder="Game Description"></textarea>
+      </mat-form-field>
+      <span id="spacer"></span>
+      <mat-form-field>
+          <textarea matInput type="text" formControlName="platform" placeholder="Game platform"></textarea>
+        </mat-form-field>
+        <span id="spacer"></span>
+      <button mat-raised-button color="primary" (click)="createGame()" [disabled]="!GameForm.valid">
+        Create Game
+      </button>
+    </form>
+  </mat-card>
