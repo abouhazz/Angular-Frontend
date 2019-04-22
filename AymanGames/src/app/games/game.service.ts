@@ -58,7 +58,7 @@ import { environment } from '../../environments/environment';
       deleteGame(gameId: String){
         this.http.delete<any>(`${this.apiUrl}api/games/` + gameId)
         .subscribe((response) => {
-          this.router.navigate(['gamelist']);
+          this.getGames();
         });
       }
 

@@ -26,6 +26,6 @@ export class GamesDetailComponent implements OnInit {
   }
 
   onDelete(gameId: String){
-    this.gameService.deleteGame(this.gameId);
+    this.gameService.deleteGame(gameId);
   }
 }

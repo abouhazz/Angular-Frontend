@@ -12,6 +12,7 @@ import { Subscription } from 'rxjs';
 export class GamesListComponent implements OnInit {
   games: Game[] = [];
   gameSub: Subscription;
+  
   userIsAuth = false;
 
   constructor(private gameService: GameService, private authService: AuthService) { }
@@ -30,6 +31,10 @@ export class GamesListComponent implements OnInit {
         this.userIsAuth = isAuth;
         
       })
+  }
+
+  onDelete(gameId: String){
+    this.gameService.deleteGame(gameId);
   }
 
   

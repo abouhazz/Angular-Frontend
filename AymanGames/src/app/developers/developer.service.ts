@@ -33,7 +33,7 @@ import { environment } from '../../environments/environment';
 
     }
 
-    createDeveloper(gameid : String, developer: Developer){
+    createDeveloper(gameid : String, developer: any){
         this.http.post<any>(`${this.apiUrl}api/games/`+ gameid+ '/developers', developer)
       .subscribe((response) => {
           this.router.navigate(['gamedetail/'+ gameid])
@@ -58,7 +58,7 @@ import { environment } from '../../environments/environment';
       deleteDeveloper(gameid: String, developerid: String){
         this.http.delete<any>(`${this.apiUrl}api/games/` + gameid + '/developers/'+developerid)
         .subscribe((response) => {
-          this.router.navigate(['gamedetail/'+ gameid]);
+          this.getDevelopers(gameid);
         });
       }
 

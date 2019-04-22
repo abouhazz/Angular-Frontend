@@ -1,0 +1,9 @@
+<tbody>
+<tr *ngFor="let developer of developers">
+    <th scope="row">{{developer.name}}</th>
+    <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteDeveloper(game._id, developer._id)">Delete developer</button>&nbsp;
+        <button class="btn btn-warning btn-sm" [routerLink]="['/gamedetail', game._id, 'developerupdate', developer._id]">Update developer</button>
+    </td>
+</tr>
+</tbody>
