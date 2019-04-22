@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GameService } from '../game.service';
 import { ParamMap, ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { Game } from 'src/app/models/game.model';
-import { AuthService } from 'src/app/auth/auth.service';
+import { Game } from '../../models/game.model';
+import { AuthService } from '../../auth/auth.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
