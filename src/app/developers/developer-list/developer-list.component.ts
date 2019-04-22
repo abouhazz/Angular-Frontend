@@ -1,9 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Developer } from 'src/app/models/developer.model';
+import { Developer } from '../../models/developer.model';
 import { Subscription } from 'rxjs';
 import { DeveloperService } from '../developer.service';
 import { ActivatedRoute } from '@angular/router';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 
 @Component({
   selector: 'app-developer-list',

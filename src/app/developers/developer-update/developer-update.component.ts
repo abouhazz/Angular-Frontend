@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
-import { Developer } from 'src/app/models/developer.model';
+import { Developer } from '../../models/developer.model';
 import { Subscription } from 'rxjs';
 import { DeveloperService } from '../developer.service';
-import { AuthService } from 'src/app/auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { NgForm } from '@angular/forms';
 
 
