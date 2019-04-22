@@ -19,11 +19,11 @@
               <app-developer-list [game]="game"></app-developer-list>
           </mat-card-content>
           <span id="spacer"></span>
-            <a mat-raised-button color="primary" [routerLink]="['/gameedit', game._id]"id="editbutton">EDIT</a>
+            <a mat-raised-button color="primary" [routerLink]="['/gameedit', gameId]"id="editbutton">EDIT</a>
             <span id="spacer"></span>
-            <a mat-raised-button color="warn" (click)="onDelete(game._id)" [routerLink]="['/gamelist']"id = "deletebutton">DELETE</a>
+            <a mat-raised-button color="warn" (click)="onDelete(gameId)" [routerLink]="['/gamelist']"id = "deletebutton">DELETE</a>
             <span id="spacer"></span>
-            <a mat-raised-button color="primary" [routerLink]="['/gamedetail', game._id, 'developercreate']"id = "adddeveloper">ADD DEVELOPER</a>
+            <a mat-raised-button color="primary" [routerLink]="['/gamedetail', gameId, 'developercreate']"id = "adddeveloper">ADD DEVELOPER</a>
             <span id="spacer"></span>
         </div>
       </mat-card>
