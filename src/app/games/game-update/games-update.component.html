@@ -1,7 +1,7 @@
 <mat-card>
         
         
-        <form [formGroup]="GameForm" *ngIf="!isLoading">
+        <form [formGroup]="GameForm">
           <mat-form-field>
               <input matInput type="text" formControlName="name" placeholder="Game Name"/>
           </mat-form-field>
