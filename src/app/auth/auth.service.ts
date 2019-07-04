@@ -14,9 +14,10 @@ export class AuthService {
   private isAuthenticated = false;
   private authStatusListener = new Subject<boolean>();
   private token: string;
-  
-  
-  
+  private userId: string;
+
+
+
 
   constructor(private http: HttpClient, private router: Router) { }
 
@@ -25,16 +26,20 @@ export class AuthService {
     return this.isAuthenticated;
   }
 
-  getToken(){
-    
+  getToken() {
+    return this.token;
   }
 
-  getAuthStatusListener(){
-    return this.authStatusListener;
+  getUserId() {
+    return this.userId;
+  }
+
+  getAuthStatusListener() {
+    return this.authStatusListener.asObservable();
   }
 
   createUser(email: string, name: string, password: string) {
-    const authData: AuthData = { email: email, name: name, password: password};
+    const authData: AuthData = { email: email, name: name, password: password };
 
     this.http.post(`${this.apiUrl}api/register`, authData)
       .subscribe(() => {
@@ -42,34 +47,41 @@ export class AuthService {
       });
   }
 
-  loginUser(email: string,  password: string) {
-    const authData: AuthData = { email: email, name:undefined, password: password};
+  loginUser(email: string, password: string) {
+    const authData: AuthData = { email: email, name: undefined, password: password };
     this.http.post<any>(
       `${this.apiUrl}api/login`, authData
-      )    
+    )
       .subscribe((response) => {
-        localStorage.setItem('token', response.toString())
+        const NewToken = response.token;
+        const UiD = response.userId;
+        this.token = NewToken;
+        this.userId = UiD;
+        localStorage.setItem('token', this.token)
+        localStorage.setItem('userId', this.userId);
 
 
-
-        
-        this.isAuthenticated = true;
         this.authStatusListener.next(true);
+        this.isAuthenticated = true;
+
         this.router.navigate(['gamelist']);
-        
-        
-        
-      }
-      );
+
+
+
+      }, (error) => { });
+
+
   }
 
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('userId');
     this.isAuthenticated = false;
     this.authStatusListener.next(false);
     this.router.navigate(['login']);
-    
   }
+
+
 
 }

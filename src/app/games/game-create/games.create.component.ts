@@ -21,15 +21,12 @@ export class CreateGameComponent implements OnInit{
         this.GameForm = new FormGroup({
             name: new FormControl(null, Validators.required),
             description: new FormControl(null, Validators.required),
+            releasedate: new FormControl(null, Validators.required),
             platform: new FormControl(null, Validators.required)   
         })
         
         this.userIsAuth = this.authService.getIsAuth();
-        this.gameSub = this.authService.getAuthStatusListener()
-        .subscribe(isAuth => {
-        this.userIsAuth = isAuth;
         
-      })
     }
 
     createGame() {

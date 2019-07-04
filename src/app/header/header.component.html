@@ -6,5 +6,6 @@
     <a *ngIf="userIsAuth" (click)="onLogout()" mat-raised-button color="warn" id="logoutbutton"> Uitloggen</a>
     <span id="spacer"></span>
     <a *ngIf="!userIsAuth" mat-raised-button color="primary" routerLink="register" id="registerbutton"> Registreer</a>
-    <a *ngIf="userIsAuth" mat-raised-button color="primary" [routerLink]="['/gamecreate']" routerLinkActive="mat-accent">New game</a>
+    <a *ngIf="userIsAuth" mat-raised-button color="primary" [routerLink]="['/gamecreate']" routerLinkActive="mat-accent">New
+        game</a>
 </nav>

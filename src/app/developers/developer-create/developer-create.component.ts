@@ -6,35 +6,31 @@ import { Subscription } from 'rxjs';
 import { AuthService } from '../../auth/auth.service';
 
 @Component({
-    selector: 'app-developer-create',
-    templateUrl: './developer-create.component.html',
-    styleUrls: ['./developer-create.component.css']
-  })
-  export class DeveloperCreateComponent implements OnInit {
-    DeveloperForm: FormGroup;
-    gameid: string;
-    userIsAuth = false;
-    subscription: Subscription;
-  
-    constructor(private developerService: DeveloperService, private route: ActivatedRoute, private authService: AuthService) { }
+  selector: 'app-developer-create',
+  templateUrl: './developer-create.component.html',
+  styleUrls: ['./developer-create.component.css']
+})
+export class DeveloperCreateComponent implements OnInit {
+  DeveloperForm: FormGroup;
+  gameid: string;
+  userIsAuth = false;
+  subscription: Subscription;
 
-    ngOnInit() {
-      this.route.params.subscribe(params => this.gameid = params.gameid);
-      this.DeveloperForm = new FormGroup({
-        name: new FormControl(null, Validators.required)
-      });
+  constructor(private developerService: DeveloperService, private route: ActivatedRoute, private authService: AuthService) { }
 
-      this.userIsAuth = this.authService.getIsAuth();
-      this.subscription = this.authService.getAuthStatusListener()
-        .subscribe(isAuth => {
-          this.userIsAuth = isAuth;
-          
-        })
-    }
+  ngOnInit() {
+    this.route.params.subscribe(params => this.gameid = params.gameid);
+    this.DeveloperForm = new FormGroup({
+      name: new FormControl(null, Validators.required)
+    });
 
-    
-    
-    createDeveloper(gameid: string) {
-        this.developerService.createDeveloper(gameid, this.DeveloperForm.value);
-    }
+    this.userIsAuth = this.authService.getIsAuth();
+
   }
+
+
+
+  createDeveloper(gameid: string) {
+    this.developerService.createDeveloper(gameid, this.DeveloperForm.value);
+  }
+}

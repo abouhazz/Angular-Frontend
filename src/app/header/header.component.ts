@@ -19,19 +19,14 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, public dialog: MatDialog, private router: Router) { }
 
   ngOnInit() {
-    this.token = localStorage.getItem('token');
-    this.userIsAuth = this.authService.getIsAuth()
     this.authStatusSub = this.authService.getAuthStatusListener()
-    .subscribe(isAuthenicater => {
-      this.userIsAuth = isAuthenicater;
-    })
-    
+      .subscribe(isAuthenicater => {
+        this.userIsAuth = isAuthenicater;
+      })
   }
 
   onLogout() {
     this.authService.logout();
-    this.router.navigate(['login']);
-    
   }
 
   ngOnDestroy() {

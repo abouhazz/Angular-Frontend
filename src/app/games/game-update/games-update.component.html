@@ -2,8 +2,8 @@
         
         
         <form [formGroup]="GameForm">
-          <mat-form-field>
-              <input matInput type="text" formControlName="name" placeholder="Game Name"/>
+          <mat-form-field >
+              <input matInput type="text" formControlName="name" placeholder="{{game?.name}}"/>
           </mat-form-field>
           <span id="spacer"></span>
           <mat-form-field>
@@ -14,6 +14,11 @@
               <textarea matInput type="text" formControlName="platform" placeholder="Game platform"></textarea>
             </mat-form-field>
             <span id="spacer"></span>
+            <mat-form-field>
+                    <input matInput [matDatepicker]="picker" formControlName="releasedate" placeholder="Choose a date">
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
           <button mat-raised-button color="primary" (click)="updateGame(gameId)" [disabled]="!GameForm.valid">
               Save Game
             </button>

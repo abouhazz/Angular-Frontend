@@ -10,4 +10,10 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
   title = 'AymanGames';
+
+  constructor(
+    private authService: AuthService,
+  ) {}
+
+  
 }

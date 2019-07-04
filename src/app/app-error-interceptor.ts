@@ -7,22 +7,22 @@ import { ErrorComponent } from "./error/error.component";
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
-    
-    constructor(private dialog: MatDialog) {}
 
-    intercept(req: HttpRequest<any>, next: HttpHandler) {
-        return next.handle(req).pipe(
-          catchError((error: HttpErrorResponse) => {
-            console.log(error.message);
-    
-            let errorMessage = 'Error!';
-            if (error.message) {
-              errorMessage = error.error.error;
-            }
-    
-            this.dialog.open(ErrorComponent, { data: { message: errorMessage}});
-            return throwError(error);
-          })
-        );
-      }
+  constructor(private dialog: MatDialog) { }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler) {
+    return next.handle(req).pipe(
+      catchError((error: HttpErrorResponse) => {
+        console.log(error.message);
+
+        let errorMessage = 'Error!';
+        if (error.message) {
+          errorMessage = error.error.error;
+        }
+
+        this.dialog.open(ErrorComponent, { data: { message: errorMessage } });
+        return throwError(error);
+      })
+    );
+  }
 }

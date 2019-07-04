@@ -27,7 +27,7 @@ export class DevelopersUpdateComponent implements OnInit {
     this.updateDeveloperForm = new FormGroup({
       name: new FormControl(null, Validators.required)
     });
-    
+
     this.route.params.subscribe(params => this.gameId = params.gameid);
     this.route.params.subscribe(params => this.developerId = params.developerid);
 
@@ -37,16 +37,12 @@ export class DevelopersUpdateComponent implements OnInit {
         this.developer = developerData.developer;
       });
 
-      this.userIsAuth = this.authService.getIsAuth();
-      this.subscription = this.authService.getAuthStatusListener()
-        .subscribe(isAuth => {
-          this.userIsAuth = isAuth;
-          
-        })
+    this.userIsAuth = this.authService.getIsAuth();
+    
   }
 
   updateDeveloper(gameId: string, developerId: string) {
     this.developerService.updateDeveloper(gameId, developerId, this.updateDeveloperForm.value);
-    
+
   }
 }

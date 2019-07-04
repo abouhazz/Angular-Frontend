@@ -1,10 +1,10 @@
 <mat-card>
-        <form [formGroup]="updateDeveloperForm">
-          <mat-form-field>
-            <input matInput type="text" formControlName="name" placeholder={{developer?.name}}/>
-          </mat-form-field>
-          <button mat-raised-button color="primary" (click)="updateDeveloper(gameId, developerId)" [disabled]="!updateDeveloperForm.valid">
-            Save Developer
-          </button>
-        </form>
-      </mat-card>
+  <form [formGroup]="updateDeveloperForm">
+    <mat-form-field>
+      <input matInput type="text" formControlName="name" placeholder={{developer?.name}} />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="updateDeveloper(gameId, developerId)" [disabled]="!updateDeveloperForm.valid">
+      Save Developer
+    </button>
+  </form>
+</mat-card>

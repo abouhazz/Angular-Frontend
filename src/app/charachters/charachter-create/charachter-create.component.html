@@ -1,0 +1,13 @@
+<mat-card>
+  <form [formGroup]="CharachterForm">
+    <mat-form-field>
+      <input matInput type="text" formControlName="name" placeholder="Charachter Name" />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" formControlName="level" placeholder="Charachter Level (numbers only)" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="createCharachter(gameid)" [disabled]="!CharachterForm.valid">
+      Save Charachter
+    </button>
+  </form>
+</mat-card>

@@ -13,29 +13,30 @@ export class GamesListComponent implements OnInit {
   games: Game[] = [];
   gameSub: Subscription;
   userIsAuth = false;
+  authStatusSub: Subscription;
+  userId: string;
 
   constructor(private gameService: GameService, private authService: AuthService) { }
 
   ngOnInit() {
     this.gameService.getGames();
+    this.userId = this.authService.getUserId();
     this.gameSub = this.gameService.getGameUpdateListener()
       .subscribe((gameData: { games: Game[] }) => {
         this.games = gameData.games;
-        
+
       });
 
-      this.userIsAuth = this.authService.getIsAuth();
-      this.gameSub = this.authService.getAuthStatusListener()
-      .subscribe(isAuth => {
-        this.userIsAuth = isAuth;
-        
-      })
+    this.userIsAuth = this.authService.getIsAuth();
+    this.userId = this.authService.getUserId();
+
   }
 
-  onDelete(gameId: String){
-    this.gameService.deleteGame(gameId);
-    this.gameService.getGames();
+  onDelete(gameId: String) {
+    console.log(gameId);
+    return this.gameService.deleteGame(gameId);
+    
   }
 
-  
+
 }

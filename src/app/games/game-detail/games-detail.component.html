@@ -1,29 +1,40 @@
 <mat-card>
-    
-    <div >  
-     <mat-card-header> 
-            <mat-card-title>{{game?.name}}</mat-card-title>       
-          </mat-card-header>   
-          <mat-card-content>
-            <h4>Description:</h4>
-            <p class="mat-body-1">{{ game?.description }}</p>
-          </mat-card-content>
-
-          <mat-card-content>
-              <h4>Platforms:</h4>
-              <p class="mat-body-1">{{ game?.platform }}</p>
-          </mat-card-content>
-
-          <mat-card-content>
-              <h4>Developers:</h4>
-              <app-developer-list [game]="game"></app-developer-list>
-          </mat-card-content>
-          <span id="spacer"></span>
-            <a mat-raised-button color="primary" [routerLink]="['/gameedit', gameId]"id="editbutton">EDIT</a>
-            <span id="spacer"></span>
-            <a mat-raised-button color="warn" (click)="onDelete(gameId)" [routerLink]="['/gamelist']"id = "deletebutton">DELETE</a>
-            <span id="spacer"></span>
-            <a mat-raised-button color="primary" [routerLink]="['/gamedetail', gameId, 'developercreate']"id = "adddeveloper">ADD DEVELOPER</a>
-            <span id="spacer"></span>
-        </div>
-      </mat-card>
+  <div>
+    <mat-card-header>
+      <mat-card-title>{{game?.name}}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <h4>Description:</h4>
+      <p class="mat-body-1">{{ game?.description }}</p>
+    </mat-card-content>
+    <mat-card-content>
+      <h4>Platforms:</h4>
+      <p class="mat-body-1">{{ game?.platform }}</p>
+    </mat-card-content>
+    <mat-card-content>
+      <h4>Releasedate:</h4>
+      <p class="mat-body-1">{{ game?.releasedate | date: 'mediumDate' }}</p>
+    </mat-card-content>
+    <mat-card-content>
+      <h4>Developers:</h4>
+      <app-developer-list [game]="game"></app-developer-list>
+    </mat-card-content>
+    <mat-card-content>
+      <h4>Charachters:</h4>
+      <app-charachter-list [game]="game"></app-charachter-list>
+    </mat-card-content>
+    <mat-card-actions *ngIf="userId===game?.user">
+      <span id="spacer"></span>
+      <a mat-raised-button color="primary" [routerLink]="['/gameedit', gameId]" id="editbutton">EDIT</a>
+      <span id="spacer"></span>
+      <a mat-raised-button color="warn" (click)="onDelete(gameId)" [routerLink]="['/gamelist']" id="deletebutton">DELETE</a>
+      <span id="spacer"></span>
+      <a mat-raised-button color="primary" [routerLink]="['/gamedetail', gameId, 'developercreate']" id="adddeveloper">ADD
+        DEVELOPER</a>
+      <span id="spacer"></span>
+      <a mat-raised-button color="primary" [routerLink]="['/gamedetail', gameId, 'charachtercreate']" id="addcharachter">ADD
+        CHARACHTER</a>
+      <span id="spacer"></span>
+    </mat-card-actions>
+  </div>
+</mat-card>

@@ -15,6 +15,8 @@ export class GamesDetailComponent implements OnInit {
   gameSub: Subscription;
   gameId: string;
   userIsAuth = false;
+  authStatusSub: Subscription;
+  userId: string;
 
   constructor(private gameService: GameService, private route: ActivatedRoute, private authService: AuthService) { }
 
@@ -22,20 +24,17 @@ export class GamesDetailComponent implements OnInit {
     this.route.params.subscribe((params) => this.gameId = params.gameid);
     this.gameService.getGameById(this.gameId)
     this.gameSub = this.gameService.getGameByIdUpdateListener()
-    .subscribe((gameData: { game: Game }) => {
+      .subscribe((gameData: { game: Game }) => {
         this.game = gameData.game;
       });
 
     this.userIsAuth = this.authService.getIsAuth();
-    this.gameSub = this.authService.getAuthStatusListener()
-      .subscribe(isAuth => {
-        this.userIsAuth = isAuth;
-        
-      })
+    this.userId = this.authService.getUserId();
+
   }
 
-  onDelete(gameId: String){
+  onDelete(gameId: String) {
     this.gameService.deleteGame(gameId);
-    this.gameService.getGameById(gameId);
+    this.gameService.getGames();
   }
 }

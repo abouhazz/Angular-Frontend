@@ -1,0 +1,13 @@
+<mat-card>
+  <form [formGroup]="updateCharachterForm">
+    <mat-form-field>
+      <input matInput type="text" formControlName="name" placeholder={{charachter?.name}} />
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput type="number" formControlName="level" placeholder={{charachter?.level}} />
+    </mat-form-field>
+    <button mat-raised-button color="primary" (click)="updateCharachter(gameId, charachterId)" [disabled]="!updateCharachterForm.valid">
+      Save Charachter
+    </button>
+  </form>
+</mat-card>

@@ -1,0 +1,20 @@
+<tbody>
+        <tr>
+                
+                <th scope="col">Name: </th>
+                <th></th>
+                <th scope="col"> Level: </th>
+                <th></th>
+              </tr>
+    <tr *ngFor="let charachter of charachters">  
+        <th scope="row">{{charachter.name}} </th>
+        <th></th>
+        <th scope="row">{{charachter.level}} </th>
+        <th></th>
+        
+        <a mat-raised-button color="warn" (click)="deleteCharachter(Id, charachter._id)" id="button" *ngIf="userId===game?.user">Delete charachter</a>
+        <span id="spacer"></span>
+        <a mat-raised-button color="primary" [routerLink]="['/gamedetail', Id, 'charachterupdate', charachter._id]" id="button" *ngIf="userId===game?.user">Edit charachter</a>
+      
+    </tr>
+    </tbody>
