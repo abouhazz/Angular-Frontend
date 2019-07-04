@@ -24,7 +24,6 @@ export class LoginComponent implements  OnDestroy {
 
   onLogin(form: NgForm) {
     if (form.invalid) {
-      
       return;
     } else {
       this.isLoading = true;
